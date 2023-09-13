@@ -46,6 +46,7 @@ dependencies:
   #Api
   retrofit: ^4.0.1
   dio: ^5.3.2
+  retrofit_generator: ^5.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

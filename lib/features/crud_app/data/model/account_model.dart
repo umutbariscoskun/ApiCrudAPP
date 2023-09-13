@@ -2,13 +2,14 @@
 import 'dart:convert';
 
 class AccountModel {
-  AccountModel(
-      {required this.name,
-      required this.surname,
-      required this.birthDate,
-      required this.sallary,
-      required this.phoneNumber,
-      required this.identityNumber});
+  AccountModel({
+    required this.name,
+    required this.surname,
+    required this.birthDate,
+    required this.sallary,
+    required this.phoneNumber,
+    required this.identityNumber,
+  });
 
   final String name;
   final String surname;
@@ -28,7 +29,7 @@ class AccountModel {
     };
   }
 
-  factory AccountModel.fromMap(Map<String, dynamic> map) {
+  factory AccountModel.fromJson(Map<String, dynamic> map) {
     return AccountModel(
       name: map['name'] as String,
       surname: map['surname'] as String,
@@ -41,6 +42,6 @@ class AccountModel {
 
   String toJson() => json.encode(toMap());
 
-  factory AccountModel.fromJson(String source) =>
-      AccountModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AccountModel.fromMap(String source) =>
+      AccountModel.fromJson(json.decode(source) as Map<String, dynamic>);
 }
