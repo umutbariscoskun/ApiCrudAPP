@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:api_crud_app/core/errors/failures.dart';
-import 'package:api_crud_app/core/usecase/usecase.dart';
 import 'package:api_crud_app/features/crud_app/data/datasource/remote/account_remote_datasource.dart';
 import 'package:api_crud_app/features/crud_app/data/model/account_model.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
@@ -44,10 +43,10 @@ class AccountRepositoryImpl implements AccountRepository {
 
   @override
   Future<Either<Failure, List<AccountEntity>>> getAccounts(
-      {required NoParams noParams}) async {
+      {required int page}) async {
     try {
       final entityList = <AccountEntity>[];
-      final result = await _accountRemoteDataSource.getAccounts(page: 1);
+      final result = await _accountRemoteDataSource.getAccounts(page: page);
 
       result.map(
         (e) => entityList.add(
