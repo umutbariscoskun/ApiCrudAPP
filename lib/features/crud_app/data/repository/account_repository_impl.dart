@@ -8,6 +8,7 @@ import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart
 import 'package:api_crud_app/features/crud_app/domain/repository/account_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 @Injectable(as: AccountRepository)
 @lazySingleton
@@ -21,9 +22,7 @@ class AccountRepositoryImpl implements AccountRepository {
   Future<Either<Failure, void>> addAccount(
       {required AccountEntity accountEntity}) async {
     try {
-      final id = DateTime.fromMillisecondsSinceEpoch(
-              int.parse(DateTime.now().toString()))
-          .toString();
+      final id = const Uuid().v1();
 
       final model = AccountModel(
         name: accountEntity.name,
@@ -48,19 +47,20 @@ class AccountRepositoryImpl implements AccountRepository {
       final entityList = <AccountEntity>[];
       final result = await _accountRemoteDataSource.getAccounts(page: page);
 
-      result.map(
-        (e) => entityList.add(
+      for (final modelElement in result) {
+        entityList.add(
           AccountEntity(
-            name: e.name,
-            surname: e.surname,
-            birthDate: e.birthDate,
-            sallary: e.sallary,
-            phoneNumber: e.phoneNumber,
-            identityNumber: e.identityNumber,
-            id: e.id,
+            name: modelElement.name,
+            surname: modelElement.surname,
+            birthDate: modelElement.birthDate,
+            sallary: modelElement.sallary,
+            phoneNumber: modelElement.phoneNumber,
+            identityNumber: modelElement.identityNumber,
+            id: modelElement.id,
           ),
-        ),
-      );
+        );
+      }
+
       return Right(entityList);
     } on Exception catch (error) {
       log(error.toString());

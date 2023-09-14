@@ -10,7 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:api_crud_app/core/config/dependency_injection/module.dart'
-    as _i7;
+    as _i8;
 import 'package:api_crud_app/features/crud_app/data/datasource/remote/account_remote_datasource.dart'
     as _i3;
 import 'package:api_crud_app/features/crud_app/data/repository/account_repository_impl.dart'
@@ -19,6 +19,8 @@ import 'package:api_crud_app/features/crud_app/domain/repository/account_reposit
     as _i4;
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart'
     as _i6;
+import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart'
+    as _i7;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -52,8 +54,10 @@ extension GetItInjectableX on _i1.GetIt {
           removeAccountUseCase: gh<_i6.RemoveAccountUseCase>(),
           updateAccountUseCase: gh<_i6.UpdateAccountUseCase>(),
         ));
+    gh.factory<_i7.HomeCubit>(
+        () => _i7.HomeCubit(accountUseCases: gh<_i6.AccountUseCases>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i7.RegisterModule {}
+class _$RegisterModule extends _i8.RegisterModule {}
