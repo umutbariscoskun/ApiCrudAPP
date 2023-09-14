@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Movie App',
+      title: 'Api Crud App',
       theme: ThemeData(
         brightness: Brightness.light,
-        fontFamily: 'Inter',
+        // fontFamily: 'Inter',
         // scaffoldBackgroundColor: kBackGroundColor,
       ),
       debugShowCheckedModeBanner: false,
