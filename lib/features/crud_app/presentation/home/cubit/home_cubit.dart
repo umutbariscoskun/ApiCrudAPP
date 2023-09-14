@@ -1,4 +1,5 @@
 import 'package:api_crud_app/core/errors/failures.dart';
+import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -22,9 +23,30 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await foldAsync(() async => await _accountUseCases
         .getAccountsUseCase
         .call(GetAccountParams(page: 1)));
+
+    if (result != null) {
+      emit(state.copyWith(accountEntityList: result));
+    }
   }
 
-  Future<void> addAccount() async {}
+  Future<void> addAccount() async {
+    final entity = AccountEntity(
+        name: "name",
+        surname: "surname",
+        birthDate: DateTime.now(),
+        sallary: 123,
+        phoneNumber: "phoneNumber",
+        identityNumber: "identityNumber",
+        id: "id");
+
+    await _accountUseCases.addAccountUseCase
+        .call(AddAccountParams(accountEntity: entity));
+  }
+
+  Future<void> removeAccountEntity({required String accountEntityId}) async {
+    await _accountUseCases.removeAccountUseCase
+        .call(RemoveAccountParams(accountEntityId));
+  }
 
   Future<T?> foldAsync<T>(
     Future<Either<Failure, T>> Function() result,

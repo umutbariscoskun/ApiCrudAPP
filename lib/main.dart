@@ -1,6 +1,6 @@
 import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
 import 'package:api_crud_app/core/config/observer/route_observer.dart';
-import 'package:api_crud_app/core/config/shared/helper_functions.dart';
+import 'package:api_crud_app/core/shared/helper_functions.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
