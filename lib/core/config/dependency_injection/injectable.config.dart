@@ -36,7 +36,8 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.factory<_i3.AccountRemoteDataSource>(
         () => registerModule.accountDioClient);
-    gh.factory<_i4.AccountRepository>(() => _i5.AccountRepositoryImpl());
+    gh.factory<_i4.AccountRepository>(
+        () => _i5.AccountRepositoryImpl(gh<_i3.AccountRemoteDataSource>()));
     gh.factory<_i6.AddAccountUseCase>(
         () => _i6.AddAccountUseCase(gh<_i4.AccountRepository>()));
     gh.factory<_i6.GetAccountsUseCase>(

@@ -19,15 +19,12 @@ class _AccountRemoteDataSource implements AccountRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<AccountModel> sendMessageGPT(
-    header, {
-    required body,
-  }) async {
+  Future<AccountModel> addAccount({required body}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{r'authorization': header};
-    _headers.removeWhere((k, v) => v == null);
-    final _data = body;
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AccountModel>(Options(
       method: 'POST',
@@ -37,6 +34,87 @@ class _AccountRemoteDataSource implements AccountRemoteDataSource {
             .compose(
               _dio.options,
               '/api/v1/account',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = AccountModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<AccountModel>> getAccounts({
+    required page,
+    limitForPerPage = DataConstants.paginationLimit,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'limit': limitForPerPage,
+    };
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<AccountModel>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/v1/account',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => AccountModel.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<AccountModel> updateAnAccount({
+    required id,
+    required body,
+  }) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AccountModel>(Options(
+      method: 'PUT',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/v1/account/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = AccountModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<AccountModel> removeAnAccount({required id}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<AccountModel>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/api/v1/account/${id}',
               queryParameters: queryParameters,
               data: _data,
             )

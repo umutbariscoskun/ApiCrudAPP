@@ -9,6 +9,7 @@ class AccountModel {
     required this.sallary,
     required this.phoneNumber,
     required this.identityNumber,
+    required this.id,
   });
 
   final String name;
@@ -17,6 +18,7 @@ class AccountModel {
   final int sallary;
   final String phoneNumber;
   final String identityNumber;
+  final String id;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -26,6 +28,7 @@ class AccountModel {
       'sallary': sallary,
       'phoneNumber': phoneNumber,
       'identityNumber': identityNumber,
+      'id': id,
     };
   }
 
@@ -37,6 +40,7 @@ class AccountModel {
       sallary: map['sallary'] as int,
       phoneNumber: map['phoneNumber'] as String,
       identityNumber: map['identityNumber'] as String,
+      id: map["id"].toString(),
     );
   }
 

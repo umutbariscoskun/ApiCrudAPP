@@ -4,12 +4,12 @@ part of 'account_usecases.dart';
 @injectable
 
 ///Get Accounts
-class GetAccountsUseCase extends StreamUseCase<List<AccountEntity>, void> {
+class GetAccountsUseCase extends UseCase<List<AccountEntity>, void> {
   final AccountRepository _accountRepository;
   GetAccountsUseCase(this._accountRepository);
 
   @override
-  Stream<Either<Failure, List<AccountEntity>>> call(void params) {
+  Future<Either<Failure, List<AccountEntity>>> call(void params) {
     return _accountRepository.getAccounts(noParams: NoParams());
   }
 }

@@ -1,7 +1,8 @@
+import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
-  // configureDependencies();
+  configureDependencies();
   runApp(const MyApp());
 }
 

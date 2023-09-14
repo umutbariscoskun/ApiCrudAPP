@@ -5,6 +5,7 @@ class AccountEntity {
   final int sallary;
   final String phoneNumber;
   final String identityNumber;
+  final String id;
 
   AccountEntity({
     required this.name,
@@ -13,5 +14,6 @@ class AccountEntity {
     required this.sallary,
     required this.phoneNumber,
     required this.identityNumber,
+    required this.id,
   });
 }

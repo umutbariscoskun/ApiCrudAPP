@@ -8,7 +8,7 @@ abstract class AccountRepository {
       {required AccountEntity accountEntity});
   Future<Either<Failure, void>> removeAccount(
       {required String accountEntityId});
-  Stream<Either<Failure, List<AccountEntity>>> getAccounts(
+  Future<Either<Failure, List<AccountEntity>>> getAccounts(
       {required NoParams noParams});
   Future<Either<Failure, void>> updateAccount(
       {required AccountEntity accountEntity});
