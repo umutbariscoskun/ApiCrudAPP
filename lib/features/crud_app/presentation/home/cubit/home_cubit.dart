@@ -1,6 +1,7 @@
 import 'package:api_crud_app/core/errors/failures.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
+import 'package:api_crud_app/features/crud_app/presentation/widgets/item/account_fields_page_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +17,8 @@ class HomeCubit extends Cubit<HomeState> {
         super(const HomeState()) {
     init();
   }
+  late final accountFieldsPageModelList = <AccountFieldsPageModel>[];
+  late final editAccountFieldsPageModelList = <AccountFieldsPageModel>[];
 
   final AccountUseCases _accountUseCases;
 
@@ -34,7 +37,7 @@ class HomeCubit extends Cubit<HomeState> {
         name: "name",
         surname: "surname",
         birthDate: DateTime.now(),
-        sallary: 123,
+        salary: 123,
         phoneNumber: "phoneNumber",
         identityNumber: "identityNumber",
         id: "id");
