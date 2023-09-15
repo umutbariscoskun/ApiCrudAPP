@@ -11,21 +11,51 @@ extension AccountFieldsExt on AccountFieldsStatus {
 
 class AccountFieldsState extends Equatable {
   final AccountFieldsStatus accountFieldsStatus;
+  final String name;
+  final String surname;
+  final String phoneNumber;
+  final String salary;
+  final DateTime? birthDate;
+  final String identityNumber;
 
   const AccountFieldsState({
     this.accountFieldsStatus = AccountFieldsStatus.initial,
+    this.name = '',
+    this.surname = '',
+    this.phoneNumber = '',
+    this.salary = '',
+    this.birthDate,
+    this.identityNumber = '',
   });
 
   AccountFieldsState copyWith({
     AccountFieldsStatus? accountFieldsStatus,
+    String? name,
+    String? surname,
+    String? phoneNumber,
+    String? salary,
+    DateTime? birthDate,
+    String? identityNumber,
   }) {
     return AccountFieldsState(
       accountFieldsStatus: accountFieldsStatus ?? this.accountFieldsStatus,
+      name: name ?? this.name,
+      surname: surname ?? this.surname,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      salary: salary ?? this.salary,
+      birthDate: birthDate ?? this.birthDate,
+      identityNumber: identityNumber ?? this.identityNumber,
     );
   }
 
   @override
   List<Object?> get props => [
         accountFieldsStatus,
+        name,
+        surname,
+        phoneNumber,
+        salary,
+        birthDate,
+        identityNumber,
       ];
 }

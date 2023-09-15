@@ -1,8 +1,7 @@
-import 'package:api_crud_app/core/errors/failures.dart';
+import 'package:api_crud_app/core/extension/cubit_extension.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
 import 'package:api_crud_app/features/crud_app/presentation/widgets/item/account_fields_page_model.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -18,7 +17,6 @@ class HomeCubit extends Cubit<HomeState> {
     init();
   }
   late final accountFieldsPageModelList = <AccountFieldsPageModel>[];
-  late final editAccountFieldsPageModelList = <AccountFieldsPageModel>[];
 
   final AccountUseCases _accountUseCases;
 
@@ -49,16 +47,5 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> removeAccountEntity({required String accountEntityId}) async {
     await _accountUseCases.removeAccountUseCase
         .call(RemoveAccountParams(accountEntityId));
-  }
-
-  Future<T?> foldAsync<T>(
-    Future<Either<Failure, T>> Function() result,
-  ) async {
-    final response = await result();
-
-    return response.fold(
-      (l) => throw l,
-      (r) => r,
-    );
   }
 }

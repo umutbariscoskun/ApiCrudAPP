@@ -4,8 +4,6 @@ import 'package:api_crud_app/core/enum/account_fields_page_type.dart';
 import 'package:api_crud_app/core/extension/context_extension.dart';
 import 'package:api_crud_app/features/crud_app/presentation/account_fields/account_fields_view.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
-import 'package:api_crud_app/features/crud_app/presentation/widgets/date_picker_factory.dart';
-import 'package:api_crud_app/features/crud_app/presentation/widgets/item/account_fields_page_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,26 +26,10 @@ class HomeView extends StatelessWidget {
                 floatingActionButton: FloatingActionButton(
                   backgroundColor: Colors.amber,
                   onPressed: () {
-                    cubit.accountFieldsPageModelList.addAll([
-                      AccountFieldsPageModel(hintText: "Name:"),
-                      AccountFieldsPageModel(hintText: "Surname:"),
-                      AccountFieldsPageModel(
-                        hintText: "BirthDate:",
-                        readOnly: true,
-                        onTap: () {
-                          DatePickerFactory.showDatePickerNatively(context);
-                        },
-                      ),
-                      AccountFieldsPageModel(hintText: "Salary:"),
-                      AccountFieldsPageModel(hintText: "PhoneNumber:"),
-                      AccountFieldsPageModel(hintText: "IdentityNumber:"),
-                    ]);
                     showCupertinoModalBottomSheet(
                         context: context,
                         builder: (context) => AccountFieldsView(
                               accountFieldsPageType: AccountFieldsPageType.add,
-                              accountFieldsPageModelList:
-                                  cubit.accountFieldsPageModelList,
                             ));
                   },
                   child: const Icon(
@@ -80,32 +62,12 @@ class HomeView extends StatelessWidget {
                             final item = state.accountEntityList[index];
                             return GestureDetector(
                               onTap: () {
-                                cubit.editAccountFieldsPageModelList.addAll([
-                                  AccountFieldsPageModel(hintText: item.name),
-                                  AccountFieldsPageModel(
-                                      hintText: item.surname),
-                                  AccountFieldsPageModel(
-                                    hintText: item.birthDate.toString(),
-                                    readOnly: true,
-                                    onTap: () {
-                                      DatePickerFactory.showDatePickerNatively(
-                                          context);
-                                    },
-                                  ),
-                                  AccountFieldsPageModel(
-                                      hintText: item.salary.toString()),
-                                  AccountFieldsPageModel(
-                                      hintText: item.phoneNumber),
-                                  AccountFieldsPageModel(
-                                      hintText: item.identityNumber),
-                                ]);
                                 showCupertinoModalBottomSheet(
                                     context: context,
                                     builder: (context) => AccountFieldsView(
                                           accountFieldsPageType:
                                               AccountFieldsPageType.edit,
-                                          accountFieldsPageModelList: cubit
-                                              .editAccountFieldsPageModelList,
+                                          accountEntity: item,
                                         ));
                               },
                               child: Dismissible(
