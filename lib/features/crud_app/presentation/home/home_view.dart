@@ -22,6 +22,7 @@ class HomeView extends StatelessWidget {
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               final cubit = context.read<HomeCubit>();
+
               return Scaffold(
                 floatingActionButton: FloatingActionButton(
                   backgroundColor: Colors.amber,
@@ -29,6 +30,7 @@ class HomeView extends StatelessWidget {
                     showCupertinoModalBottomSheet(
                         context: context,
                         builder: (context) => AccountFieldsView(
+                              homeCubit: cubit,
                               accountFieldsPageType: AccountFieldsPageType.add,
                             ));
                   },
@@ -65,6 +67,7 @@ class HomeView extends StatelessWidget {
                                 showCupertinoModalBottomSheet(
                                     context: context,
                                     builder: (context) => AccountFieldsView(
+                                          homeCubit: cubit,
                                           accountFieldsPageType:
                                               AccountFieldsPageType.edit,
                                           accountEntity: item,

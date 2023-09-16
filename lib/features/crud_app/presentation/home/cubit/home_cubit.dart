@@ -1,3 +1,4 @@
+import 'package:api_crud_app/core/enum/account_text_field_type.dart';
 import 'package:api_crud_app/core/extension/cubit_extension.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
@@ -19,33 +20,95 @@ class HomeCubit extends Cubit<HomeState> {
   late final accountFieldsPageModelList = <AccountFieldsPageModel>[];
 
   final AccountUseCases _accountUseCases;
-
+  var _list = <AccountEntity>[];
   Future<void> init() async {
     final result = await foldAsync(() async => await _accountUseCases
         .getAccountsUseCase
         .call(GetAccountParams(page: 1)));
 
     if (result != null) {
+      _list.addAll(result);
       emit(state.copyWith(accountEntityList: result));
+    }
+  }
+
+  Future<void> removeAccountEntity({required String accountEntityId}) async {
+    final result = await _accountUseCases.removeAccountUseCase
+        .call(RemoveAccountParams(accountEntityId));
+    result.fold((l) => null, (r) {
+      _list = state.accountEntityList;
+      _list.removeWhere((element) => element.id == accountEntityId);
+      emit(state.copyWith(accountEntityList: _list));
+    });
+  }
+
+  void emitTextFieldStates(
+      {required AccountTextFieldType accountTextFieldType,
+      required String value}) {
+    switch (accountTextFieldType) {
+      case AccountTextFieldType.name:
+        emit(state.copyWith(name: value));
+      case AccountTextFieldType.surname:
+        emit(state.copyWith(surname: value));
+      case AccountTextFieldType.birthDate:
+        emit(state.copyWith(birthDate: DateTime.parse(value)));
+      case AccountTextFieldType.identityNumber:
+        emit(state.copyWith(identityNumber: value));
+      case AccountTextFieldType.phoneNumber:
+        emit(state.copyWith(phoneNumber: value));
+      case AccountTextFieldType.salary:
+        emit(state.copyWith(salary: value));
     }
   }
 
   Future<void> addAccount() async {
     final entity = AccountEntity(
-        name: "name",
-        surname: "surname",
-        birthDate: DateTime.now(),
-        salary: 123,
-        phoneNumber: "phoneNumber",
-        identityNumber: "identityNumber",
-        id: "id");
+        name: state.name,
+        surname: state.surname,
+        birthDate: state.birthDate ?? DateTime(2004),
+        salary: int.parse(state.salary),
+        phoneNumber: state.phoneNumber,
+        identityNumber: state.identityNumber,
+        id: '');
 
-    await _accountUseCases.addAccountUseCase
-        .call(AddAccountParams(accountEntity: entity));
+    final result = await foldAsync(
+      () async => _accountUseCases.addAccountUseCase.call(
+        AddAccountParams(
+          accountEntity: entity,
+        ),
+      ),
+    );
+    if (result != null) {
+      _list = state.accountEntityList;
+      _list.add(result);
+      emit(state.copyWith(accountEntityList: _list));
+    }
   }
 
-  Future<void> removeAccountEntity({required String accountEntityId}) async {
-    await _accountUseCases.removeAccountUseCase
-        .call(RemoveAccountParams(accountEntityId));
+  Future<void> updateAccount({
+    required AccountEntity accountEntity,
+  }) async {
+    final entity = AccountEntity(
+      name: state.name,
+      surname: state.surname,
+      birthDate: state.birthDate ?? DateTime(2004),
+      salary: int.parse(state.salary),
+      phoneNumber: state.phoneNumber,
+      identityNumber: state.identityNumber,
+      id: accountEntity.id,
+    );
+    final result = await foldAsync(
+      () async =>
+          _accountUseCases.updateAccountUseCase.call(UpdateAccountParams(
+        accountEntity: entity,
+      )),
+    );
+
+    if (result != null) {
+      _list = state.accountEntityList;
+      final index = _list.indexWhere((element) => element.id == result.id);
+      _list.insert(index, result);
+      emit(state.copyWith(accountEntityList: _list));
+    }
   }
 }
