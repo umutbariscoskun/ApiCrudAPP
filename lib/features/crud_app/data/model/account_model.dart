@@ -6,7 +6,7 @@ class AccountModel {
     required this.name,
     required this.surname,
     required this.birthDate,
-    required this.sallary,
+    required this.salary,
     required this.phoneNumber,
     required this.identityNumber,
     required this.id,
@@ -15,7 +15,7 @@ class AccountModel {
   final String name;
   final String surname;
   final DateTime birthDate;
-  final int sallary;
+  final int salary;
   final String phoneNumber;
   final String identityNumber;
   final String id;
@@ -24,8 +24,8 @@ class AccountModel {
     return <String, dynamic>{
       'name': name,
       'surname': surname,
-      'birthDate': birthDate.millisecondsSinceEpoch,
-      'sallary': sallary,
+      'birthDate': birthDate.toString(),
+      'sallary': salary,
       'phoneNumber': phoneNumber,
       'identityNumber': identityNumber,
       'id': id,
@@ -36,8 +36,8 @@ class AccountModel {
     return AccountModel(
       name: map['name'] as String,
       surname: map['surname'] as String,
-      birthDate: DateTime.fromMillisecondsSinceEpoch(map['birthDate']),
-      sallary: map['sallary'] as int,
+      birthDate: DateTime.fromMicrosecondsSinceEpoch(map['birthDate']),
+      salary: map['sallary'] as int,
       phoneNumber: map['phoneNumber'] as String,
       identityNumber: map['identityNumber'] as String,
       id: map["id"].toString(),

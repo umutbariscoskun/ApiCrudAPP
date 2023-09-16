@@ -8,6 +8,7 @@ import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart
 import 'package:api_crud_app/features/crud_app/domain/repository/account_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 @Injectable(as: AccountRepository)
 @lazySingleton
@@ -18,23 +19,23 @@ class AccountRepositoryImpl implements AccountRepository {
       : _accountRemoteDataSource = accountRemoteDataSource;
 
   @override
-  Future<Either<Failure, void>> addAccount(
+  Future<Either<Failure, AccountEntity>> addAccount(
       {required AccountEntity accountEntity}) async {
     try {
-      final id = DateTime.fromMillisecondsSinceEpoch(
-              int.parse(DateTime.now().toString()))
-          .toString();
+      final id = const Uuid().v1();
 
       final model = AccountModel(
         name: accountEntity.name,
         surname: accountEntity.surname,
         birthDate: accountEntity.birthDate,
-        sallary: accountEntity.sallary,
+        salary: accountEntity.salary,
         phoneNumber: accountEntity.phoneNumber,
         identityNumber: accountEntity.identityNumber,
         id: id,
       ).toMap();
-      return Right(await _accountRemoteDataSource.addAccount(body: model));
+      final result = await _accountRemoteDataSource.addAccount(body: model);
+      final entityFromModelId = accountEntity.copyWith(id: result.id);
+      return Right(entityFromModelId);
     } on Exception catch (error) {
       log(error.toString());
       return Left(ServerFailure(message: error.toString()));
@@ -48,19 +49,20 @@ class AccountRepositoryImpl implements AccountRepository {
       final entityList = <AccountEntity>[];
       final result = await _accountRemoteDataSource.getAccounts(page: page);
 
-      result.map(
-        (e) => entityList.add(
+      for (final modelElement in result) {
+        entityList.add(
           AccountEntity(
-            name: e.name,
-            surname: e.surname,
-            birthDate: e.birthDate,
-            sallary: e.sallary,
-            phoneNumber: e.phoneNumber,
-            identityNumber: e.identityNumber,
-            id: e.id,
+            name: modelElement.name,
+            surname: modelElement.surname,
+            birthDate: modelElement.birthDate,
+            salary: modelElement.salary,
+            phoneNumber: modelElement.phoneNumber,
+            identityNumber: modelElement.identityNumber,
+            id: modelElement.id,
           ),
-        ),
-      );
+        );
+      }
+
       return Right(entityList);
     } on Exception catch (error) {
       log(error.toString());
@@ -69,12 +71,21 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<Either<Failure, void>> removeAccount(
+  Future<Either<Failure, AccountEntity>> removeAccount(
       {required String accountEntityId}) async {
     try {
       final result =
-          _accountRemoteDataSource.removeAnAccount(id: accountEntityId);
-      return Right(result);
+          await _accountRemoteDataSource.removeAnAccount(id: accountEntityId);
+      final entity = AccountEntity(
+        name: result.name,
+        surname: result.surname,
+        birthDate: result.birthDate,
+        salary: result.salary,
+        phoneNumber: result.phoneNumber,
+        identityNumber: result.identityNumber,
+        id: result.id,
+      );
+      return Right(entity);
     } on Exception catch (error) {
       log(error.toString());
       return Left(ServerFailure(message: error.toString()));
@@ -82,22 +93,24 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<Either<Failure, void>> updateAccount(
+  Future<Either<Failure, AccountEntity>> updateAccount(
       {required AccountEntity accountEntity}) async {
     try {
       final id = accountEntity.id;
-      final modelMap = AccountModel(
+      final model = AccountModel(
         name: accountEntity.name,
         surname: accountEntity.surname,
         birthDate: accountEntity.birthDate,
-        sallary: accountEntity.sallary,
+        salary: accountEntity.salary,
         phoneNumber: accountEntity.phoneNumber,
         identityNumber: accountEntity.identityNumber,
         id: id,
-      ).toMap();
+      );
       final result = await _accountRemoteDataSource.updateAnAccount(
-          id: id, body: modelMap);
-      return Right(result);
+          id: id, body: model.toMap());
+
+      final entityFromModelId = accountEntity.copyWith(id: result.id);
+      return Right(entityFromModelId);
     } on Exception catch (error) {
       log(error.toString());
       return Left(ServerFailure(message: error.toString()));

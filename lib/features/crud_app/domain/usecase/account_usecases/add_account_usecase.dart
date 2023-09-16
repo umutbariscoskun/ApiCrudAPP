@@ -4,12 +4,12 @@ part of 'account_usecases.dart';
 @injectable
 
 ///Adds an account to API and app flow
-class AddAccountUseCase extends UseCase<void, AddAccountParams> {
+class AddAccountUseCase extends UseCase<AccountEntity, AddAccountParams> {
   final AccountRepository _accountRepository;
 
   AddAccountUseCase(this._accountRepository);
   @override
-  Future<Either<Failure, void>> call(AddAccountParams params) async {
+  Future<Either<Failure, AccountEntity>> call(AddAccountParams params) async {
     return await _accountRepository.addAccount(
       accountEntity: params.accountEntity,
     );
