@@ -8,7 +8,6 @@ import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart
 import 'package:api_crud_app/features/crud_app/domain/repository/account_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:uuid/uuid.dart';
 
 @Injectable(as: AccountRepository)
 @lazySingleton
@@ -22,7 +21,9 @@ class AccountRepositoryImpl implements AccountRepository {
   Future<Either<Failure, AccountEntity>> addAccount(
       {required AccountEntity accountEntity}) async {
     try {
-      final id = const Uuid().v1();
+      // id will be assigned from api
+      // we wont use id until request
+      const id = '';
 
       final model = AccountModel(
         name: accountEntity.name,
@@ -33,7 +34,9 @@ class AccountRepositoryImpl implements AccountRepository {
         identityNumber: accountEntity.identityNumber,
         id: id,
       ).toMap();
+
       final result = await _accountRemoteDataSource.addAccount(body: model);
+      // Getting and using real id from api
       final entityFromModelId = accountEntity.copyWith(id: result.id);
       return Right(entityFromModelId);
     } on Exception catch (error) {
@@ -108,7 +111,7 @@ class AccountRepositoryImpl implements AccountRepository {
       );
       final result = await _accountRemoteDataSource.updateAnAccount(
           id: id, body: model.toMap());
-
+      // Getting and using real id from api
       final entityFromModelId = accountEntity.copyWith(id: result.id);
       return Right(entityFromModelId);
     } on Exception catch (error) {
