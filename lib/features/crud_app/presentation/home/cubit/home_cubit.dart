@@ -4,6 +4,7 @@ import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
 import 'package:api_crud_app/features/crud_app/presentation/widgets/item/account_fields_page_model.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,17 +19,50 @@ class HomeCubit extends Cubit<HomeState> {
     init();
   }
   late final accountFieldsPageModelList = <AccountFieldsPageModel>[];
-
+  int _page = 1;
+  bool isLastPage = false;
   final AccountUseCases _accountUseCases;
   var _list = <AccountEntity>[];
-  Future<void> init() async {
-    final result = await foldAsync(() async => await _accountUseCases
-        .getAccountsUseCase
-        .call(GetAccountParams(page: 1)));
+  late final ScrollController scrollController;
 
-    if (result != null) {
-      _list.addAll(result);
-      emit(state.copyWith(accountEntityList: result));
+  Future<void> init() async {
+    scrollController = ScrollController();
+    scrollController.addListener(() async {
+      if (scrollController.position.pixels ==
+              scrollController.position.maxScrollExtent &&
+          !state.scrollIsLoading) {
+        if (!isLastPage) {
+          _page++;
+          emit(state.copyWith(scrollIsLoading: true));
+          await getAccounts();
+          emit(state.copyWith(scrollIsLoading: false));
+        }
+      }
+    });
+
+    await getAccounts();
+  }
+
+  Future<void> getAccounts() async {
+    if (!isLastPage) {
+      final result = await foldAsync(() async => await _accountUseCases
+          .getAccountsUseCase
+          .call(GetAccountParams(page: _page)));
+
+      if (result != null) {
+        if (result.isEmpty) {
+          isLastPage = true;
+        } else {
+          _list.addAll(result);
+
+          ///to prevent duplicate elements
+          ///there might be duplicates because of new added accounts
+          final Set list = <AccountEntity>{};
+          list.addAll(_list);
+
+          emit(state.copyWith(accountEntityList: [...list]));
+        }
+      }
     }
   }
 

@@ -36,7 +36,7 @@ class AccountModel {
     return AccountModel(
       name: map['name'] as String,
       surname: map['surname'] as String,
-      birthDate: DateTime.parse(map['birthDate']),
+      birthDate: DateTime.fromMicrosecondsSinceEpoch(map['birthDate']),
       salary: map['sallary'] as int,
       phoneNumber: map['phoneNumber'] as String,
       identityNumber: map['identityNumber'] as String,

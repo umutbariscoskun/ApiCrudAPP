@@ -18,6 +18,7 @@ class HomeState extends Equatable {
   final String salary;
   final DateTime? birthDate;
   final String identityNumber;
+  final bool scrollIsLoading;
 
   const HomeState({
     this.homeStatus = HomeStatus.initial,
@@ -28,6 +29,7 @@ class HomeState extends Equatable {
     this.salary = '',
     this.birthDate,
     this.identityNumber = '',
+    this.scrollIsLoading = false,
   });
 
   HomeState copyWith({
@@ -39,6 +41,7 @@ class HomeState extends Equatable {
     String? salary,
     DateTime? birthDate,
     String? identityNumber,
+    bool? scrollIsLoading,
   }) {
     return HomeState(
       homeStatus: homeStatus ?? this.homeStatus,
@@ -49,6 +52,7 @@ class HomeState extends Equatable {
       salary: salary ?? this.salary,
       birthDate: birthDate ?? this.birthDate,
       identityNumber: identityNumber ?? this.identityNumber,
+      scrollIsLoading: scrollIsLoading ?? this.scrollIsLoading,
     );
   }
 
@@ -63,5 +67,6 @@ class HomeState extends Equatable {
         birthDate,
         identityNumber,
         identityHashCode(this),
+        scrollIsLoading,
       ];
 }
