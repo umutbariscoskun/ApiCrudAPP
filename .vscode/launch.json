@@ -5,6 +5,9 @@
   "version": "0.2.0",
   "configurations": [
     {
+
+      //It wont work for android because of 'test' keyword 
+      //You can change it with 'dev'
       "name": "Launch test",
       "request": "launch",
       "type": "dart",
