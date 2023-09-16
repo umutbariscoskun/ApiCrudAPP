@@ -1,0 +1,17 @@
+{
+    "save" : "Kaydet",
+    "add" : "Ekle",
+    "name" : "İsim:",
+    "surname" : "Soyisim:",
+    "birthDate" : "Doğum Tarihi:",
+    "salary" : "Maaş:",
+    "phoneNumber" : "Telefon Numarası:",
+    "identityNumber" : "Kimlik Numarası:",
+    "delete" : "Sil",
+    "cancel" : "İptal",
+    "done" : "Tamam",
+    "editAccount" : "Hesabı Güncelle",
+    "addAccount" : "Hesabı Ekle"
+
+
+}

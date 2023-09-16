@@ -1,4 +1,3 @@
-import 'package:api_crud_app/core/constants/text_constants.dart';
 import 'package:api_crud_app/core/enum/account_fields_page_type.dart';
 import 'package:api_crud_app/core/enum/account_text_field_type.dart';
 import 'package:api_crud_app/core/extension/context_extension.dart';
@@ -140,7 +139,7 @@ class AccountFieldsView extends StatelessWidget {
               BaseTextField(
                 hintText: !isPageTypeAdd && accountEntity != null
                     ? accountEntity!.name
-                    : "Name:",
+                    : locales.name,
                 onChanged: (String value) => homeCubit.emitTextFieldStates(
                     accountTextFieldType: AccountTextFieldType.name,
                     value: value),
@@ -148,13 +147,13 @@ class AccountFieldsView extends StatelessWidget {
               BaseTextField(
                 hintText: !isPageTypeAdd && accountEntity != null
                     ? accountEntity!.surname
-                    : "Surname::",
+                    : locales.surname,
                 onChanged: (String value) => homeCubit.emitTextFieldStates(
                     accountTextFieldType: AccountTextFieldType.surname,
                     value: value),
               ),
               BaseTextField(
-                hintText: "BirthDate:",
+                hintText: locales.birthDate,
                 readOnly: true,
                 onTap: () async {
                   final result =
@@ -167,7 +166,7 @@ class AccountFieldsView extends StatelessWidget {
               BaseTextField(
                 hintText: !isPageTypeAdd && accountEntity != null
                     ? accountEntity!.salary.toString()
-                    : "Salary:",
+                    : locales.salary,
                 onChanged: (String value) => homeCubit.emitTextFieldStates(
                     accountTextFieldType: AccountTextFieldType.salary,
                     value: value),
@@ -175,7 +174,7 @@ class AccountFieldsView extends StatelessWidget {
               BaseTextField(
                 hintText: !isPageTypeAdd && accountEntity != null
                     ? accountEntity!.phoneNumber
-                    : "PhoneNumber:",
+                    : locales.phoneNumber,
                 onChanged: (String value) => homeCubit.emitTextFieldStates(
                     accountTextFieldType: AccountTextFieldType.phoneNumber,
                     value: value),
@@ -183,7 +182,7 @@ class AccountFieldsView extends StatelessWidget {
               BaseTextField(
                 hintText: !isPageTypeAdd && accountEntity != null
                     ? accountEntity!.identityNumber
-                    : "IdentityNumber:",
+                    : locales.identityNumber,
                 onChanged: (String value) => homeCubit.emitTextFieldStates(
                     accountTextFieldType: AccountTextFieldType.identityNumber,
                     value: value),
@@ -210,7 +209,7 @@ class AccountFieldsView extends StatelessWidget {
                     height: 50.h,
                     child: Center(
                       child: Text(
-                        isPageTypeAdd ? TextConstants.add : TextConstants.save,
+                        isPageTypeAdd ? locales.add : locales.save,
                         textAlign: TextAlign.center,
                       ),
                     ),

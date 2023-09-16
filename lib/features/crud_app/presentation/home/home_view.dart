@@ -1,9 +1,13 @@
 import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
 import 'package:api_crud_app/core/constants/color_constants.dart';
+import 'package:api_crud_app/core/constants/text_constants.dart';
 import 'package:api_crud_app/core/enum/account_fields_page_type.dart';
 import 'package:api_crud_app/core/extension/context_extension.dart';
+import 'package:api_crud_app/core/shared/helper_functions.dart';
+import 'package:api_crud_app/features/crud_app/data/constants/data_constants.dart';
 import 'package:api_crud_app/features/crud_app/presentation/account_fields/account_fields_view.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +56,7 @@ class HomeView extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.only(left: 20.w, top: 30.h),
                               child: Text(
-                                "CRUD APP",
+                                TextConstants.crudApp,
                                 style: TextStyle(
                                   fontSize: 36.sp,
                                   fontWeight: FontWeight.bold,
@@ -91,9 +95,9 @@ class HomeView extends StatelessWidget {
                                         alignment: Alignment.centerRight,
                                         child: Padding(
                                           padding: EdgeInsets.only(right: 30.w),
-                                          child: const Text('Delete',
+                                          child: Text(locales.delete,
                                               textAlign: TextAlign.right,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   color: Colors.white)),
                                         ),
                                       ),
