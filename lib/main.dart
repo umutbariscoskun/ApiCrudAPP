@@ -16,12 +16,11 @@ void main() async {
   configureDependencies();
   runApp(EasyLocalization(
     supportedLocales: const [
-      Locale(DataConstants.enLanguageCode, DataConstants.enCountryCode),
-      Locale(DataConstants.trLanguageCode, DataConstants.trCountryCode),
+      DataConstants.enLocale,
+      DataConstants.trLocale,
     ],
     path: DataConstants.translationsFilePath,
-    fallbackLocale:
-        const Locale(DataConstants.enLanguageCode, DataConstants.enCountryCode),
+    fallbackLocale: DataConstants.enLocale,
     child: FlavorBanner(
         message: EnvironmentConfig.currentEnvironment.toUpperCase(),
         child: const MyApp()),

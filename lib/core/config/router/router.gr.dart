@@ -22,7 +22,13 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const HomeView(),
       );
-    }
+    },
+    SplashRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SplashView(),
+      );
+    },
   };
 
   @override
@@ -30,7 +36,11 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           HomeRoute.name,
           path: '/',
-        )
+        ),
+        RouteConfig(
+          SplashRoute.name,
+          path: '/splash-view',
+        ),
       ];
 }
 
@@ -44,4 +54,16 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [SplashView]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute()
+      : super(
+          SplashRoute.name,
+          path: '/splash-view',
+        );
+
+  static const String name = 'SplashRoute';
 }
