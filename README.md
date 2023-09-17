@@ -7,7 +7,8 @@ A new Flutter API CRUD PROJECT. ✅
 
 ### Api Schema
 
-![Ekran Resmi 2023-09-17 19 46 23](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/6aff6bba-c833-43f0-88af-1810544285aa)
+
+![Ekran Resmi 2023-09-17 19 46 23](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/b94e9bf8-28f6-4344-ae16-2c6e5979b33f)
 
 
 
