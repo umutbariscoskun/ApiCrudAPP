@@ -1,11 +1,11 @@
 import 'package:api_crud_app/core/env.dart';
 import 'package:flutter/material.dart';
 
-class FlavorBanner extends StatelessWidget {
+class EnvironmentBanner extends StatelessWidget {
   final Widget child;
   final String message;
 
-  const FlavorBanner({
+  const EnvironmentBanner({
     required this.child,
     required this.message,
     Key? key,

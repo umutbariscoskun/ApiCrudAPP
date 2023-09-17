@@ -1,4 +1,4 @@
-import 'package:api_crud_app/core/banner.dart';
+import 'package:api_crud_app/core/environment_banner.dart';
 import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
 import 'package:api_crud_app/core/config/observer/route_observer.dart';
 import 'package:api_crud_app/core/env.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   configureDependencies();
-  runApp(FlavorBanner(
+  runApp(EnvironmentBanner(
       message: EnvironmentConfig.currentEnvironment.toUpperCase(),
       child: const MyApp()));
 }
