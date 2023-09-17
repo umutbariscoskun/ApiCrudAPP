@@ -24,6 +24,7 @@ class HomeCubit extends Cubit<HomeState> {
   late final ScrollController scrollController;
 
   Future<void> init() async {
+    emit(state.copyWith(homeStatus: HomeStatus.loading));
     scrollController = ScrollController();
     scrollController.addListener(() async {
       if (scrollController.position.pixels ==
@@ -39,6 +40,8 @@ class HomeCubit extends Cubit<HomeState> {
     });
 
     await getAccounts();
+
+    emit(state.copyWith(homeStatus: HomeStatus.success));
   }
 
   Future<void> getAccounts() async {

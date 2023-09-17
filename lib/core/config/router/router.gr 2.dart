@@ -35,11 +35,11 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(
           HomeRoute.name,
-          path: '/home-view',
+          path: '/',
         ),
         RouteConfig(
           SplashRoute.name,
-          path: '/',
+          path: '/splash-view',
         ),
       ];
 }
@@ -50,7 +50,7 @@ class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
-          path: '/home-view',
+          path: '/',
         );
 
   static const String name = 'HomeRoute';
@@ -62,7 +62,7 @@ class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute()
       : super(
           SplashRoute.name,
-          path: '/',
+          path: '/splash-view',
         );
 
   static const String name = 'SplashRoute';

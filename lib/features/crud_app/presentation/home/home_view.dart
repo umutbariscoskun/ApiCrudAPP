@@ -7,6 +7,7 @@ import 'package:api_crud_app/features/crud_app/presentation/home/widget/add_floa
 import 'package:api_crud_app/features/crud_app/presentation/home/widget/header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -32,21 +33,24 @@ class HomeView extends StatelessWidget {
                       child: Column(
                         children: [
                           const HeaderText(),
-                          Expanded(
-                            child: AccountItemBuilderArea(
-                              cubit: cubit,
-                              accountEntityList: state.accountEntityList,
+                          if (state.homeStatus != HomeStatus.success)
+                            Padding(
+                              padding: EdgeInsets.only(top: 250.h),
+                              child: const _LoadingIndicator(),
                             ),
-                          ),
+                          if (state.homeStatus == HomeStatus.success)
+                            Expanded(
+                              child: AccountItemBuilderArea(
+                                cubit: cubit,
+                                accountEntityList: state.accountEntityList,
+                              ),
+                            ),
                         ],
                       ),
                     ),
 
                     ///Pagination loading
-                    if (state.scrollIsLoading)
-                      const CircularProgressIndicator(
-                        color: ColorConstants.amberColor,
-                      ),
+                    if (state.scrollIsLoading) const _LoadingIndicator(),
                   ],
                 ),
               );
@@ -54,6 +58,19 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _LoadingIndicator extends StatelessWidget {
+  const _LoadingIndicator({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const CircularProgressIndicator(
+      color: ColorConstants.amberColor,
     );
   }
 }
