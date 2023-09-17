@@ -1,4 +1,4 @@
-import 'package:api_crud_app/core/constants/text_constants.dart';
+import 'package:api_crud_app/core/shared/helper_functions.dart';
 
 enum AccountFieldsPageType {
   edit,
@@ -8,9 +8,9 @@ enum AccountFieldsPageType {
   String toString() {
     switch (this) {
       case AccountFieldsPageType.edit:
-        return TextConstants.editAccount;
+        return locales.editAccount;
       case AccountFieldsPageType.add:
-        return TextConstants.addAccount;
+        return locales.addAccount;
     }
   }
 }

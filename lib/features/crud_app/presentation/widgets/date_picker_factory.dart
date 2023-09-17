@@ -1,3 +1,4 @@
+import 'package:api_crud_app/core/shared/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,13 +27,13 @@ class DatePickerFactory {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CupertinoButton(
-                    child: Text('Cancel'),
+                    child: Text(locales.cancel),
                     onPressed: () {
                       Navigator.of(builderContext).pop();
                     },
                   ),
                   CupertinoButton(
-                    child: Text('Done'),
+                    child: Text(locales.done),
                     onPressed: () {
                       Navigator.of(builderContext).pop(selectedDate);
                     },

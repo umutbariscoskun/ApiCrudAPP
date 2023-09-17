@@ -1,0 +1,17 @@
+{
+    "save" : "Save",
+    "add" : "Add",
+    "name" : "Name:",
+    "surname" : "Surname:",
+    "birthDate" : "BirthDate:",
+    "salary" : "Salary:",
+    "phoneNumber" : "PhoneNumber:",
+    "identityNumber" : "IdentityNumber:",
+    "delete" : "Delete",
+    "cancel" : "Cancel",
+    "done" : "Done",
+    "editAccount" : "Edit Account",
+    "addAccount" : "Add Account"
+
+
+}
