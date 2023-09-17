@@ -63,6 +63,7 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
               : locales.salary,
           onChanged: (String value) => widget.homeCubit.emitTextFieldStates(
               accountTextFieldType: AccountTextFieldType.salary, value: value),
+          keyboardType: TextInputType.number,
         ),
         BaseTextField(
           hintText: !widget.isPageTypeAdd && widget.accountEntity != null
@@ -71,6 +72,7 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
           onChanged: (String value) => widget.homeCubit.emitTextFieldStates(
               accountTextFieldType: AccountTextFieldType.phoneNumber,
               value: value),
+          keyboardType: TextInputType.number,
         ),
         BaseTextField(
           hintText: !widget.isPageTypeAdd && widget.accountEntity != null
@@ -79,6 +81,7 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
           onChanged: (String value) => widget.homeCubit.emitTextFieldStates(
               accountTextFieldType: AccountTextFieldType.identityNumber,
               value: value),
+          keyboardType: TextInputType.number,
         ),
       ],
     );
