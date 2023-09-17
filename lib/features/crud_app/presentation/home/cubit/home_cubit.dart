@@ -153,4 +153,28 @@ class HomeCubit extends Cubit<HomeState> {
       emit(state.copyWith(accountEntityList: _list));
     }
   }
+
+  bool validate() {
+    if (state.name.isNotEmpty &&
+        state.surname.isNotEmpty &&
+        state.birthDate != null &&
+        state.phoneNumber.isNotEmpty &&
+        state.salary.isNotEmpty &&
+        state.identityNumber.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void refreshAccountFieldsState() {
+    emit(state.copyWith(
+      name: "",
+      surname: "",
+      birthDate: null,
+      phoneNumber: "",
+      salary: "",
+      identityNumber: "",
+    ));
+  }
 }

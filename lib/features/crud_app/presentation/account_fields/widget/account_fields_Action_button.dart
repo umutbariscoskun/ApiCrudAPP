@@ -1,6 +1,7 @@
 import 'package:api_crud_app/core/constants/color_constants.dart';
 import 'package:api_crud_app/core/shared/helper_functions.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
+import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,29 +9,45 @@ class AccountFieldsActionButton extends StatelessWidget {
   const AccountFieldsActionButton({
     super.key,
     required this.isPageTypeAdd,
-    required this.updateAccountFunction,
-    required this.addAccountFunction,
     required this.accountEntity,
+    required this.homeCubit,
   });
 
   final bool isPageTypeAdd;
   final AccountEntity? accountEntity;
-  final Future<void> Function({required AccountEntity accountEntity})
-      updateAccountFunction;
-  final Future<void> Function() addAccountFunction;
+
+  final HomeCubit homeCubit;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if (isPageTypeAdd) {
-          await addAccountFunction();
-        } else {
-          if (accountEntity != null) {
-            await updateAccountFunction(accountEntity: accountEntity!);
+        final validate = homeCubit.validate();
+        if (validate) {
+          if (isPageTypeAdd) {
+            await homeCubit.addAccount();
+          } else {
+            if (accountEntity != null) {
+              await homeCubit.updateAccount(accountEntity: accountEntity!);
+            }
           }
+          await appRouter.pop();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    locales.pleaseFillEmptyAreas,
+                    style: const TextStyle(color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          );
         }
-        await appRouter.pop();
       },
       child: Center(
         child: Container(

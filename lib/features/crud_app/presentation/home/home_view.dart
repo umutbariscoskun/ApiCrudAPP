@@ -1,5 +1,4 @@
 import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
-import 'package:api_crud_app/core/constants/color_constants.dart';
 import 'package:api_crud_app/core/extension/context_extension.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/widget/account_builder.dart';
@@ -63,14 +62,10 @@ class HomeView extends StatelessWidget {
 }
 
 class _LoadingIndicator extends StatelessWidget {
-  const _LoadingIndicator({
-    super.key,
-  });
+  const _LoadingIndicator();
 
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator(
-      color: ColorConstants.amberColor,
-    );
+    return const CircularProgressIndicator();
   }
 }
