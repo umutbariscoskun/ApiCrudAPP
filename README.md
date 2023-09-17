@@ -7,18 +7,15 @@ A new Flutter API CRUD PROJECT. ✅
 
 ### Api Schema
 
-
-![Ekran Resmi 2023-09-17 19 46 23](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/b94e9bf8-28f6-4344-ae16-2c6e5979b33f)
-
-
-
+![Ekran Resmi 2023-09-17 19 46 23](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/ebe6d300-8665-41d4-a486-288b78281566)
 
 
 ### ARCHITECTURE: 
 
 - Clean Architecture
 
-![image](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/361e6836-c52e-4f4e-a3c1-b5b400d1faa2)
+![image](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/9e8d7eec-8de0-416f-ad1b-eee5a4561a61)
+
 
 [You can find more about this architecture in my article.](https://medium.com/@umutbariscoskun/flutter-clean-architecture-paketi-ve-mimari-kullan%C4%B1m%C4%B1-beae4d09e0c3)
 
@@ -110,11 +107,13 @@ run-debug-uat:
 - [mockito](https://pub.dev/packages/mockito)
 
  ### UI
+ 
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 53](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/1eb26b56-e2c5-41e6-84de-03553b2f2b66)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 47](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/472b35a3-d8de-4966-a418-0fcf0dba67ad)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 41](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/16b9663d-985a-4891-b489-7acd65d06390)
+![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 33](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/a7135c5a-d812-45ea-a522-d75cc83b8eb1)
 
-![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 53](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/b1c81292-4aef-4faf-b56d-e6c9c068ff76)
-![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 47](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/54007642-9bd8-4bc5-9803-db736fe1714d)
-![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 41](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/e69130e1-d1a6-4c8c-bf32-66ea51a54a5d)
-![Simulator Screen Shot - iPhone SE (3rd generation) - 2023-09-17 at 14 40 33](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/bc2958e4-d3e2-4bdf-9a98-88911c06590a)
+
 
 
 
