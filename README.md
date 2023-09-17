@@ -43,8 +43,8 @@ run-debug-uat:
  
  ##### YOU CAN RUN THEM DIRECTLY FROM VISUAL STUDIO CODE LAUNCH SETTINGS 
  
- ![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/24214ae6-de91-4803-8b76-75effb064288)
- 
+ ![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/e0acd146-e01d-4d90-805d-eebaf3bc6081)
+
  ###### (EXCEPT ANDROID IN TEST MODE BECAUSE OF TEST KEYWORD, GRADLE WONT ACCEPT IT. FOR RUNNING ANDROID-DEV PLEASE USE MAKE COMMANDS)
 
 
