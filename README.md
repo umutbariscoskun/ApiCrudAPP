@@ -1,5 +1,5 @@
-![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/24214ae6-de91-4803-8b76-75effb064288)# api_crud_app
 
+# api_crud_app
 A new Flutter API CRUD PROJECT.
 [mockAPI](https://mockapi.io/) used as an api. 
 
@@ -25,8 +25,9 @@ run-debug-uat:
 
  #### RUNNING ENVIRONMENTS FROM TERMINAL 
  ##### YOU CAN RUN THEM DIRECTLY FROM VISUAL STUDIO CODE LAUNCH SETTINGS 
+ ![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/24214ae6-de91-4803-8b76-75effb064288)
  ###### (EXCEPT ANDROID IN TEST MODE BECAUSE OF TEST KEYWORD, GRADLE WONT ACCEPT IT. FOR RUNNING ANDROID-DEV PLEASE USE MAKE COMMANDS)
- ![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/c73ee18a-0d2f-404b-bfbf-cec0c8ddea0d)
+
 
  `make run-ios-debug-test`
  `make run-android-debug-dev`
