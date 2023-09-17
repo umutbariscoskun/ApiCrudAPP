@@ -2,6 +2,7 @@ build_runner:
 	flutter pub run build_runner build --delete-conflicting-outputs
 
 
+/// run in terminal for example: `make run-ios-debug-test`
 run-ios-debug-test:
 	flutter run --target lib/main.dart --flavor test --dart-define=APP_ENV=test
 
