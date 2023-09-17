@@ -1,7 +1,7 @@
 import 'package:api_crud_app/core/enum/account_fields_page_type.dart';
 import 'package:api_crud_app/core/extension/context_extension.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
-import 'package:api_crud_app/features/crud_app/presentation/account_fields/widget/account_fields_Action_button.dart';
+import 'package:api_crud_app/features/crud_app/presentation/account_fields/widget/account_fields_action_button.dart';
 import 'package:api_crud_app/features/crud_app/presentation/account_fields/widget/account_fields_appbar.dart';
 import 'package:api_crud_app/features/crud_app/presentation/account_fields/widget/textfields_area.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
@@ -50,9 +50,8 @@ class AccountFieldsView extends StatelessWidget {
                 ),
                 Gap(40.h),
                 AccountFieldsActionButton(
-                  addAccountFunction: homeCubit.addAccount,
+                  homeCubit: homeCubit,
                   isPageTypeAdd: isPageTypeAdd,
-                  updateAccountFunction: homeCubit.updateAccount,
                   accountEntity: accountEntity,
                 ),
               ],

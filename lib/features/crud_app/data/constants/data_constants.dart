@@ -17,4 +17,6 @@ class DataConstants {
 
   static const String translationsFilePath = 'assets/translations';
   static const String animationsFilePath = 'assets/animations/loading.json';
+
+  static const String numberRegExp = "[a-zA-Z]";
 }

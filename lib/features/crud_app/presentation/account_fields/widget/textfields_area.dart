@@ -1,10 +1,12 @@
 import 'package:api_crud_app/core/enum/account_text_field_type.dart';
 import 'package:api_crud_app/core/shared/helper_functions.dart';
+import 'package:api_crud_app/features/crud_app/data/constants/data_constants.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/presentation/home/cubit/home_cubit.dart';
 import 'package:api_crud_app/features/crud_app/presentation/widgets/base_text_field.dart';
 import 'package:api_crud_app/features/crud_app/presentation/widgets/date_picker_factory.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldsArea extends StatefulWidget {
   const TextFieldsArea({
@@ -64,6 +66,10 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
           onChanged: (String value) => widget.homeCubit.emitTextFieldStates(
               accountTextFieldType: AccountTextFieldType.salary, value: value),
           keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.deny(
+                RegExp(DataConstants.numberRegExp)),
+          ],
         ),
         BaseTextField(
           hintText: !widget.isPageTypeAdd && widget.accountEntity != null
@@ -73,6 +79,10 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
               accountTextFieldType: AccountTextFieldType.phoneNumber,
               value: value),
           keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.deny(
+                RegExp(DataConstants.numberRegExp)),
+          ],
         ),
         BaseTextField(
           hintText: !widget.isPageTypeAdd && widget.accountEntity != null
@@ -82,6 +92,10 @@ class _TextFieldsAreaState extends State<TextFieldsArea> {
               accountTextFieldType: AccountTextFieldType.identityNumber,
               value: value),
           keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.deny(
+                RegExp(DataConstants.numberRegExp)),
+          ],
         ),
       ],
     );

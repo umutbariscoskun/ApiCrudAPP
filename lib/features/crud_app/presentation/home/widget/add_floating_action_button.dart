@@ -18,6 +18,7 @@ class AddFloatingActionButton extends StatelessWidget {
     return FloatingActionButton(
       backgroundColor: ColorConstants.amberColor,
       onPressed: () {
+        cubit.refreshAccountFieldsState();
         showCupertinoModalBottomSheet(
             context: context,
             builder: (context) => AccountFieldsView(
