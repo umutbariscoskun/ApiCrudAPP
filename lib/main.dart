@@ -1,4 +1,4 @@
-import 'package:api_crud_app/core/banner.dart';
+import 'package:api_crud_app/core/environment_banner.dart';
 import 'package:api_crud_app/core/config/dependency_injection/injectable.dart';
 import 'package:api_crud_app/core/config/observer/route_observer.dart';
 import 'package:api_crud_app/core/env.dart';
@@ -14,17 +14,19 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   configureDependencies();
-  runApp(EasyLocalization(
-    supportedLocales: const [
-      DataConstants.enLocale,
-      DataConstants.trLocale,
-    ],
-    path: DataConstants.translationsFilePath,
-    fallbackLocale: DataConstants.enLocale,
-    child: FlavorBanner(
-        message: EnvironmentConfig.currentEnvironment.toUpperCase(),
-        child: const MyApp()),
-  ));
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [
+        DataConstants.enLocale,
+        DataConstants.trLocale,
+      ],
+      path: DataConstants.translationsFilePath,
+      fallbackLocale: DataConstants.enLocale,
+      child: EnvironmentBanner(
+          message: EnvironmentConfig.currentEnvironment.toUpperCase(),
+          child: const MyApp()),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

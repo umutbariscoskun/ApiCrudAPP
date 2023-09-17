@@ -6,6 +6,9 @@
   "configurations": [
     {
 
+      //Environments set as test-dev test-uat test-prod 
+      //So you can test them with debug without release builds 
+
       //It wont work for android because of 'test' keyword 
       //You can change it with 'dev'
       "name": "Launch test",
@@ -48,66 +51,6 @@
         "--dart-define",
         "APP_ENV=prod"
       ]
-    },
-    {
-      "name": "Launch test release",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
-      "args": [
-        "--flavor",
-        "test",
-        "--target",
-        "lib/main.dart",
-        "--dart-define",
-        "APP_ENV=test",
-        "--release"
-      ]
-    },
-    {
-      "name": "Launch test profile",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
-      "args": [
-        "--flavor",
-        "test",
-        "--target",
-        "lib/main.dart",
-        "--dart-define",
-        "APP_ENV=test",
-        "--profile"
-      ]
-    },
-    {
-      "name": "Launch uat release",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
-      "args": [
-        "--flavor",
-        "uat",
-        "--target",
-        "lib/main.dart",
-        "--dart-define",
-        "APP_ENV=uat",
-        "--release"
-      ]
-    },
-    {
-      "name": "Launch production release",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart",
-      "args": [
-        "--flavor",
-        "prod",
-        "--target",
-        "lib/main.dart",
-        "--dart-define",
-        "APP_ENV=prod",
-        "--release"
-      ]
-    }
+    }, 
   ]
 }
