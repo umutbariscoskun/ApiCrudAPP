@@ -7,6 +7,16 @@ A new Flutter API CRUD PROJECT.
 
 ## Getting Started
 
+### ARCHITECTURE: 
+
+- Clean Architecture
+
+![image](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/361e6836-c52e-4f4e-a3c1-b5b400d1faa2)
+
+[You can find more about this architecture in my article.](https://medium.com/@umutbariscoskun/flutter-clean-architecture-paketi-ve-mimari-kullan%C4%B1m%C4%B1-beae4d09e0c3)
+
+
+
 ### ENVIRONMENTS
 
 #### TEST, UAT, PROD
