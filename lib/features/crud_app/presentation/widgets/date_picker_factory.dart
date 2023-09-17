@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DatePickerFactory {
-  static Future<DateTime?> showDatePickerNatively(BuildContext context) async {
+  final void Function(DateTime? dateTime) emitBirthDate;
+  final initialDate = DateTime(2000);
+  final maxDate = DateTime(2005);
+  final minDate = DateTime(1923);
+
+  DatePickerFactory({required this.emitBirthDate});
+  Future<DateTime?> showDatePickerNatively(BuildContext context) async {
     if (Theme.of(context).platform == TargetPlatform.iOS) {
       return _showCupertinoDatePicker(context);
     } else {
@@ -12,8 +18,7 @@ class DatePickerFactory {
     }
   }
 
-  static Future<DateTime?> _showCupertinoDatePicker(
-      BuildContext context) async {
+  Future<DateTime?> _showCupertinoDatePicker(BuildContext context) async {
     DateTime? selectedDate;
     await showModalBottomSheet(
       context: context,
@@ -29,13 +34,16 @@ class DatePickerFactory {
                   CupertinoButton(
                     child: Text(locales.cancel),
                     onPressed: () {
-                      Navigator.of(builderContext).pop();
+                      emitBirthDate(selectedDate ?? initialDate);
+                      appRouter.pop();
                     },
                   ),
                   CupertinoButton(
                     child: Text(locales.done),
                     onPressed: () {
-                      Navigator.of(builderContext).pop(selectedDate);
+                      emitBirthDate(selectedDate ?? initialDate);
+
+                      appRouter.pop();
                     },
                   ),
                 ],
@@ -50,25 +58,31 @@ class DatePickerFactory {
                     topRight: Radius.circular(20.r),
                   )),
               child: CupertinoDatePicker(
-                  maximumDate: DateTime(2005),
-                  initialDateTime: DateTime(2000),
+                  minimumDate: minDate,
+                  maximumDate: maxDate,
+                  initialDateTime: initialDate,
                   mode: CupertinoDatePickerMode.date,
-                  onDateTimeChanged: (DateTime date) {}),
+                  onDateTimeChanged: (DateTime date) {
+                    selectedDate = date;
+                    emitBirthDate(date);
+                  }),
             ),
           ],
         );
       },
     );
-    return selectedDate;
+    return selectedDate ?? initialDate;
   }
 
-  static Future<DateTime?> _showMaterialDatePicker(BuildContext context) async {
+  Future<DateTime?> _showMaterialDatePicker(BuildContext context) async {
     DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime(2000),
-      firstDate: DateTime(1923),
-      lastDate: DateTime(2005),
+      initialDate: initialDate,
+      firstDate: minDate,
+      lastDate: maxDate,
     );
-    return selectedDate;
+    emitBirthDate(selectedDate ?? initialDate);
+
+    return selectedDate ?? initialDate;
   }
 }

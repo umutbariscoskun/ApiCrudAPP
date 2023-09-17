@@ -24,7 +24,7 @@ class AccountModel {
     return <String, dynamic>{
       'name': name,
       'surname': surname,
-      'birthDate': birthDate.toString(),
+      'birthDate': birthDate.millisecondsSinceEpoch,
       'sallary': salary,
       'phoneNumber': phoneNumber,
       'identityNumber': identityNumber,
@@ -36,7 +36,7 @@ class AccountModel {
     return AccountModel(
       name: map['name'] as String,
       surname: map['surname'] as String,
-      birthDate: DateTime.fromMicrosecondsSinceEpoch(map['birthDate']),
+      birthDate: DateTime.fromMicrosecondsSinceEpoch(map['birthDate'] as int),
       salary: map['sallary'] as int,
       phoneNumber: map['phoneNumber'] as String,
       identityNumber: map['identityNumber'] as String,

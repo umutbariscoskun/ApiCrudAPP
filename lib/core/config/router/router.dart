@@ -9,8 +9,10 @@ part 'router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'View,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomeView, initial: true),
-    AutoRoute(page: SplashView),
+    AutoRoute(
+      page: HomeView,
+    ),
+    AutoRoute(page: SplashView, initial: true),
   ],
 )
 @lazySingleton
