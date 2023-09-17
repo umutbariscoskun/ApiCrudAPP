@@ -2,7 +2,6 @@ import 'package:api_crud_app/core/enum/account_text_field_type.dart';
 import 'package:api_crud_app/core/extension/cubit_extension.dart';
 import 'package:api_crud_app/features/crud_app/domain/entity/account_entity.dart';
 import 'package:api_crud_app/features/crud_app/domain/usecase/account_usecases/account_usecases.dart';
-import 'package:api_crud_app/features/crud_app/presentation/widgets/item/account_fields_page_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +17,6 @@ class HomeCubit extends Cubit<HomeState> {
         super(const HomeState()) {
     init();
   }
-  late final accountFieldsPageModelList = <AccountFieldsPageModel>[];
   int _page = 1;
   bool isLastPage = false;
   final AccountUseCases _accountUseCases;
@@ -76,6 +74,10 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
+  void emitBirthDate(DateTime? value) {
+    emit(state.copyWith(birthDate: value));
+  }
+
   void emitTextFieldStates(
       {required AccountTextFieldType accountTextFieldType,
       required String value}) {
@@ -104,7 +106,6 @@ class HomeCubit extends Cubit<HomeState> {
         phoneNumber: state.phoneNumber,
         identityNumber: state.identityNumber,
         id: '');
-
     final result = await foldAsync(
       () async => _accountUseCases.addAccountUseCase.call(
         AddAccountParams(
@@ -113,9 +114,13 @@ class HomeCubit extends Cubit<HomeState> {
       ),
     );
     if (result != null) {
-      _list = state.accountEntityList;
-      _list.add(result);
-      emit(state.copyWith(accountEntityList: _list));
+      if (state.accountEntityList.isNotEmpty) {
+        _list = state.accountEntityList;
+        _list.add(result);
+        emit(state.copyWith(accountEntityList: _list));
+      } else {
+        emit(state.copyWith(accountEntityList: [result]));
+      }
     }
   }
 

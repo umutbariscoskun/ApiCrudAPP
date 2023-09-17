@@ -11,7 +11,8 @@
     "cancel" : "Cancel",
     "done" : "Done",
     "editAccount" : "Edit Account",
-    "addAccount" : "Add Account"
+    "addAccount" : "Add Account",
+    "pleaseFillEmptyAreas" : "Please fill empty areas"
 
 
 }

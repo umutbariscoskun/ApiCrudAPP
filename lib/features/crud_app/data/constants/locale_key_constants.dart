@@ -7,11 +7,12 @@ class LocaleKeyConstants {
   final String surname = 'surname'.tr();
   final String birthDate = 'birthDate'.tr();
   final String salary = 'salary'.tr();
-  final String phoneNumber = 'add'.tr();
+  final String phoneNumber = 'phoneNumber'.tr();
   final String identityNumber = 'identityNumber'.tr();
   final String delete = 'delete'.tr();
   final String done = 'done'.tr();
   final String cancel = 'cancel'.tr();
   final String editAccount = 'editAccount'.tr();
   final String addAccount = 'addAccount'.tr();
+  final String pleaseFillEmptyAreas = 'pleaseFillEmptyAreas';
 }

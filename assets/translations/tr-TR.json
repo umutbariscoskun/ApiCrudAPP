@@ -11,7 +11,9 @@
     "cancel" : "İptal",
     "done" : "Tamam",
     "editAccount" : "Hesabı Güncelle",
-    "addAccount" : "Hesabı Ekle"
+    "addAccount" : "Hesabı Ekle",
+    "pleaseFillEmptyAreas" : "Lütfen tüm alanları doldurun"
+
 
 
 }
