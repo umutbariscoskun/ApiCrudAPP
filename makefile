@@ -2,8 +2,6 @@ build_runner:
 	flutter pub run build_runner build --delete-conflicting-outputs
 
 
-	#Builds the application for the dev environment.
-
 run-ios-debug-test:
 	flutter run --target lib/main.dart --flavor test --dart-define=APP_ENV=test
 
