@@ -1,6 +1,7 @@
 
 # api_crud_app
 A new Flutter API CRUD PROJECT.
+
 [mockAPI](https://mockapi.io/) used as an api. 
 
 
@@ -11,6 +12,7 @@ A new Flutter API CRUD PROJECT.
 #### TEST, UAT, PROD
 
 /// run in terminal for example: `make run-ios-debug-test`
+
 run-ios-debug-test:
 	flutter run --target lib/main.dart --flavor test --dart-define=APP_ENV=test
 
@@ -24,8 +26,11 @@ run-debug-uat:
 	flutter run --target lib/main.dart --flavor prod --dart-define=APP_ENV=prod
 
  #### RUNNING ENVIRONMENTS FROM TERMINAL 
+ 
  ##### YOU CAN RUN THEM DIRECTLY FROM VISUAL STUDIO CODE LAUNCH SETTINGS 
+ 
  ![Ekran Resmi 2023-09-17 15 04 20](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/24214ae6-de91-4803-8b76-75effb064288)
+ 
  ###### (EXCEPT ANDROID IN TEST MODE BECAUSE OF TEST KEYWORD, GRADLE WONT ACCEPT IT. FOR RUNNING ANDROID-DEV PLEASE USE MAKE COMMANDS)
 
 
