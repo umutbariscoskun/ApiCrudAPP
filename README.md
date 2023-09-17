@@ -1,11 +1,17 @@
 
 # api_crud_app
-A new Flutter API CRUD PROJECT.
+A new Flutter API CRUD PROJECT. ✅
+## Getting Started
 
 [mockAPI](https://mockapi.io/) used as an api. 
 
+### Api Schema
 
-## Getting Started
+![Ekran Resmi 2023-09-17 19 46 23](https://github.com/umutbariscoskun/ApiCrudAPP/assets/45595606/6aff6bba-c833-43f0-88af-1810544285aa)
+
+
+
+
 
 ### ARCHITECTURE: 
 
