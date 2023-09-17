@@ -35,43 +35,61 @@ run-debug-uat:
 
 
  `make run-ios-debug-test`
+ 
  `make run-android-debug-dev`
+ 
  `make run-debug-uat`
+ 
  `make run-debug-prod`
  
  
 
  ### Localization: 
+ 
  You have to change locale& country on ios to change app locale 
 
  ### Unit Testing: 
+ 
  Unit tests created for all of usecases `flutter test` 
  
  ## PACKAGES
  ##### FOR ROUTER:
+ 
 - [auto_route](https://pub.dev/packages/auto_route)
 - [auto_route_generator](https://pub.dev/packages/auto_route_generator)
+  
  ##### FOR DEPENDENCY INJECTION:
+ 
 - [Get_it](https://pub.dev/packages/get_it)
 - [Injectable](https://pub.dev/packages/injectable)
 - [injectable_generator](https://pub.dev/packages/injectable_generator)
+  
  ##### FOR State Management & Business logic:
+ 
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc)
 - [equatable](https://pub.dev/packages/equatable)
 - [dartz](https://pub.dev/packages/dartz)
+  
  ##### FOR NETWORKING:
+ 
 - [retrofit](https://pub.dev/packages/retrofit)
 - [retrofit_generator](https://pub.dev/packages/retrofit_generator)
 - [dio](https://pub.dev/packages/dio)
+  
   ##### FOR UI:
+  
 - [retrofit](https://pub.dev/packages/flutter_screenutil)
 - [gap](https://pub.dev/packages/gap)
 - [modal_bottom_sheet](https://pub.dev/packages/modal_bottom_sheet)
 - [lottie](https://pub.dev/packages/lottie)
 - [build_runner](https://pub.dev/packages/build_runner)
+  
  ##### FOR LOCALIZATION:
+ 
 - [easy_localization](https://pub.dev/packages/easy_localization)
+  
  ##### FOR UNIT TESTING:
+ 
 - [mockito](https://pub.dev/packages/mockito)
 
  ### UI
