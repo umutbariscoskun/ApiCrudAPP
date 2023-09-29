@@ -92,7 +92,7 @@ run-debug-uat:
   
   ##### FOR UI:
   
-- [retrofit](https://pub.dev/packages/flutter_screenutil)
+- [screen_util](https://pub.dev/packages/flutter_screenutil)
 - [gap](https://pub.dev/packages/gap)
 - [modal_bottom_sheet](https://pub.dev/packages/modal_bottom_sheet)
 - [lottie](https://pub.dev/packages/lottie)
